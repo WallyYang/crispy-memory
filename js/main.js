@@ -15,6 +15,13 @@ function submitSecret() {
                 alert("Empty Message!");
             } else {
                 alert("Submit secret: " + msg);
+
+                let shares = split(msg, n, m);
+                for (let i = 0; i < n; i++) {
+                    let qrc = genQR(msg[i]);
+                    addCanvas("canvas" + i);
+                    drawQR(qrc, "canvas" + i);
+                }
             }
         }
     } else {
