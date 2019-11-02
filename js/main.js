@@ -1,3 +1,7 @@
+// call when the secret is submitted
+function submitSecret() {
+    
+}
 
 // x: string
 // n: n shares
@@ -18,7 +22,7 @@ function combine(shares) {
 function genQR(s) {
     let QRC = qrcodegen.QrCode;
 
-    let qr0 = QRC.encodeText("Hello, world!", QRC.Ecc.MEDIUM);
+    return QRC.encodeText(s, QRC.Ecc.MEDIUM);
 }
 
 // qr: QrCode to draw
