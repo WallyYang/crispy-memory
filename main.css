@@ -2,3 +2,12 @@ body {
     background: rgb(255, 255, 255) !important;
     color: rgb(0, 0, 0) !important;
 }
+
+.qrcanvas {
+  width: 75%;
+  font-size: 20px;
+  padding: 1em;
+  border: 4px solid #ccc;
+  margin-bottom: 20px;
+  max-width: 200px;
+}
