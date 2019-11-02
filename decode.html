@@ -26,45 +26,60 @@
       </div>
 
       <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-xl-6 offset-xl-3">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">#msg</span>
-          </div>
-          <textarea class="form-control" placeholder="Enter your message" aria-label="user-input"></textarea>
-        </div>
-
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text" id="user_input_message">#</div>
-          </div>
-          <input type="number" class="form-control" placeholder="Split size" aria-label="user-split-size" aria-describedby="split_size">
-        </div>
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <div class="input-group-text" id="user_input_message">#</div>
-          </div>
-          <input type="number" class="form-control" placeholder="Pick size" aria-label="user-pick-size" aria-describedby="pick_size">
-        </div>
-
-        <br>
-
-        <div class="custom-file">
-          <input type="file" class="custom-file-input" id="customFile">
-          <label class="custom-file-label" for="customFile">Choose file</label>
-        </div>
-
-        <div class="row">
-          <div class="col-sm-12">
-            <div class="text-center">
-              <br>
-              <button onclick="submitSecret()" type="button" class="btn btn-success">Decode!</button>
-            </div>
-          </div>
-        </div>
-
+        <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
+        <canvas id="canvas" hidden></canvas>
       </div>
     </div>
   </div>
+
+  <script src="js/jsQR.js"></script>
+  <script>
+    var video = document.createElement("video");
+    var canvasElement = document.getElementById("canvas");
+    var canvas = canvasElement.getContext("2d");
+    var loadingMessage = document.getElementById("loadingMessage");
+
+    function drawLine(begin, end, color) {
+      canvas.beginPath();
+      canvas.moveTo(begin.x, begin.y);
+      canvas.lineTo(end.x, end.y);
+      canvas.lineWidth = 4;
+      canvas.strokeStyle = color;
+      canvas.stroke();
+    }
+
+    // Use facingMode: environment to attemt to get the front camera on phones
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } }).then(function(stream) {
+      video.srcObject = stream;
+      video.setAttribute("playsinline", true); // required to tell iOS safari we don't want fullscreen
+      video.play();
+      requestAnimationFrame(tick);
+    });
+
+    function tick() {
+      loadingMessage.innerText = "⌛ Loading video..."
+      if (video.readyState === video.HAVE_ENOUGH_DATA) {
+        loadingMessage.hidden = true;
+        canvasElement.hidden = false;
+
+        canvasElement.height = video.videoHeight;
+        canvasElement.width = video.videoWidth;
+        canvas.drawImage(video, 0, 0, canvasElement.width, canvasElement.height);
+        var imageData = canvas.getImageData(0, 0, canvasElement.width, canvasElement.height);
+        var code = jsQR(imageData.data, imageData.width, imageData.height, {
+          inversionAttempts: "dontInvert",
+        });
+        if (code) {
+          drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
+          drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
+          drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
+          drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
+          console.log(code.data);
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+  </script>
 
 </body>
 </html>
