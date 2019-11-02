@@ -65,6 +65,7 @@
     var loadingMessage = document.getElementById("loadingMessage");
     var progress = document.getElementById("progress");
 
+    var beep = new Audio("beep.mp3");
     var shares = new Set();
 
     function drawLine(begin, end, color) {
@@ -103,16 +104,19 @@
           drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
           drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
           drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
-          shares.add(code.data);
-          progress.innerText = shares.size;
-          try {
-            let text = combine(Array.from(shares));
-            canvasElement.hidden = true;
-            loadingMessage.hidden = false;
-            loadingMessage.innerText = text;
-            progress.hidden = true;
-            return;
-          } catch (err) {
+          if (!shares.has(code.data)) {
+            beep.play();
+            shares.add(code.data);
+            progress.innerText = shares.size;
+            try {
+              let text = combine(Array.from(shares));
+              canvasElement.hidden = true;
+              loadingMessage.hidden = false;
+              loadingMessage.innerText = text;
+              progress.hidden = true;
+              return;
+            } catch (err) {
+            }
           }
         }
       }
