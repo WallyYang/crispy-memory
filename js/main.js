@@ -10,7 +10,12 @@ function submitSecret() {
         if (m > n) {
             alert("Invalid input! Pick Size must be less or equal to Split Size");
         } else {
-            alert("Submit secret");
+            let msg = document.getElementById("msg").value;
+            if (msg === null || msg.length === 0) {
+                alert("Empty Message!");
+            } else {
+                alert("Submit secret: " + msg);
+            }
         }
     } else {
         console.log(splitSize);
