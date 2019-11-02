@@ -97,7 +97,7 @@
         var code = jsQR(imageData.data, imageData.width, imageData.height, {
           inversionAttempts: "dontInvert",
         });
-        if (code) {
+        if (code && code.data) {
           drawLine(code.location.topLeftCorner, code.location.topRightCorner, "#FF3B58");
           drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
           drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
