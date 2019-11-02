@@ -7,6 +7,9 @@
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link type="text/css" rel="stylesheet" href="main.css">
+  <script src="js/secrets.min.js"></script>
+  <script src="qrcodegen.js"></script>
+  <script src="js/main.js"></script>
 </head>
 
 <body>
@@ -46,7 +49,7 @@
           <input type="number" class="form-control" placeholder="Pick size" aria-label="user-pick-size" aria-describedby="pick_size">
         </div>
 
-        <button type="button" class="btn btn-primary">Encode!</button>
+        <button onclick="submitSecret()" type="button" class="btn btn-primary">Encode!</button>
 
       </div>
     </div>
