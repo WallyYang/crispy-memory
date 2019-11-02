@@ -34,7 +34,7 @@ function addCanvas(id) {
     let canvas = document.createElement("canvas");
     canvas.setAttribute("id", id);
 
-    canvas.setAttribute("style", "border:1px solid #000000;");
+    canvas.setAttribute("class", "qrcanvas");
 
     let li = document.createElement("li");
     li.appendChild(canvas);
