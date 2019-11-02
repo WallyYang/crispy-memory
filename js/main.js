@@ -34,8 +34,13 @@ function addCanvas(id) {
     let canvas = document.createElement("canvas");
     canvas.setAttribute("id", id);
 
+    canvas.setAttribute("style", "border:1px solid #000000;");
+
+    let li = document.createElement("li");
+    li.appendChild(canvas);
+
     let body = document.getElementById('body');
-    body.appendChild(canvas);
+    body.appendChild(li);
 }
 
 // x: string
