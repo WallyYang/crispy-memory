@@ -18,7 +18,7 @@ function submitSecret() {
 
                 let shares = split(msg, n, m);
                 for (let i = 0; i < n; i++) {
-                    let qrc = genQR(msg[i]);
+                    let qrc = genQR(shares[i]);
                     addCanvas("canvas" + i);
                     drawQR(qrc, "canvas" + i);
                 }
