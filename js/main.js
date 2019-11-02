@@ -14,8 +14,6 @@ function submitSecret() {
             if (msg === null || msg.length === 0) {
                 alert("Empty Message!");
             } else {
-                alert("Submit secret: " + msg);
-
                 let shares = split(msg, n, m);
                 for (let i = 0; i < n; i++) {
                     let qrc = genQR(shares[i]);
