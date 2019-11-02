@@ -1,0 +1,67 @@
+<script type="text/javascript">
+let fileDataURL;
+
+function loadFile(event)
+{
+    if (event.target.files.length > 0)
+    {
+        var file = event.target.files[0];
+        var fileReader = new FileReader();
+        fileReader.onload = function(e) {
+            fileDataURL = e.target.result;
+        };
+        fileDataURL = fileReader.readAsDataURL(file);
+    }
+}
+function decodeTextUpdate(decodedText)
+{
+    var textbox = document.getElementById("decodedText");
+    textbox.innerText = decodedText;
+}
+
+function decode()
+{
+    if (fileDataURL)
+    {
+        qrcode.callback = decodeTextUpdate;
+        qrcode.decode(fileDataURL);
+        fileDataURL = null;
+    }
+    else
+    {
+        document.getElementById("decodedText").innerText = "";
+    }
+}
+</script>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Crispy Memory</title>
+        <script src="js/secrets.min.js"></script>
+        <script src="js/main.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/grid.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/version.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/detector.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/formatinf.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/errorlevel.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/bitmat.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/datablock.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/bmparser.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/datamask.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/rsdecoder.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/gf256poly.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/gf256.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/decoder.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/qrcode.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/findpat.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/alignpat.js"></script>
+        <script type="text/javascript" src="js/jsqrcode/databr.js"></script>
+    </head>
+    <body>
+        <input type="file" onchange="loadFile(event)"></input>
+        <button onclick="decode()">Decode</button><br>
+        <br />
+        <textarea rows = 1 id = "decodedText" readonly></textarea>
+    </body>
+</html>
