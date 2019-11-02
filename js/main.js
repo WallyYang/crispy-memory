@@ -36,11 +36,11 @@ function addCanvas(id) {
 
     canvas.setAttribute("class", "qrcanvas");
 
-    let li = document.createElement("li");
-    li.appendChild(canvas);
+    let div = document.createElement("div");
+    div.appendChild(canvas);
 
     let body = document.getElementById('body');
-    body.appendChild(li);
+    body.appendChild(div);
 }
 
 // x: string
