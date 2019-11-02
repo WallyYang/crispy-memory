@@ -34,7 +34,7 @@ function addCanvas(id) {
     let canvas = document.createElement("canvas");
     canvas.setAttribute("id", id);
 
-    let body = document.getElementsByTagName("body")[0];
+    let body = document.getElementById('body');
     body.appendChild(canvas);
 }
 
@@ -65,5 +65,5 @@ function genQR(s) {
 function drawQR(qr, canvasId) {
     let canvas = document.getElementById(canvasId);
 
-    qr.drawCanvas(4, 40, canvas);
+    qr.drawCanvas(10, 4, canvas);
 }
