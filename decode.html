@@ -14,6 +14,13 @@
       background-color: #eee;
     }
 
+    #progress {
+      text-align: center;
+      padding: 40px;
+      background-color: #eee;
+      font-size: 2rem;
+    }
+
     canvas {
       width: 100%;
     }
@@ -42,6 +49,7 @@
       <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-xl-6 offset-xl-3">
         <div id="loadingMessage">🎥 Unable to access video stream (please make sure you have a webcam enabled)</div>
         <canvas id="canvas" hidden></canvas>
+        <div id="progress">0</div>
       </div>
     </div>
   </div>
@@ -54,6 +62,7 @@
     var canvasElement = document.getElementById("canvas");
     var canvas = canvasElement.getContext("2d");
     var loadingMessage = document.getElementById("loadingMessage");
+    var progress = document.getElementById("progress");
 
     var shares = new Set();
 
@@ -94,9 +103,11 @@
           drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
           drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
           shares.add(code.data);
+          progress.innerText = shares.size;
           try {
             let text = combine(Array.from(shares));
             canvasElement.hidden = true;
+            loadingMessage.hidden = false;
             loadingMessage.innerText = text;
             return;
           } catch (err) {
