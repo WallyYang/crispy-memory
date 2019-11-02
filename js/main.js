@@ -12,3 +12,19 @@ function split(x, n, m) {
 function combine(shares) {
     return secrets.hex2str(secrets.combine(shares));
 }
+
+// s: string to generate a QR code
+// return a QrCode
+function genQR(s) {
+    let QRC = qrcodegen.QrCode;
+
+    let qr0 = QRC.encodeText("Hello, world!", QRC.Ecc.MEDIUM);
+}
+
+// qr: QrCode to draw
+// canvasId: the ID of canvas of draw on
+function drawQR(qr, canvasId) {
+    let canvas = document.getElementById(canvasId);
+
+    qr.drawCanvas(4, 40, canvasId);
+}
