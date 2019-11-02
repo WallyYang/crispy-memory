@@ -1,14 +1,20 @@
 // call when the secret is submitted
 function submitSecret() {
-    alert("Submit scecret!");
-
     let splitSize = document.getElementById("split-size").value;
     let pickSize = document.getElementById("pick-size").value;
 
-    if (Number.isInteger(splitSize) && Number.isInteger) {
-        let n = parseInt(splitSize);
-        let m = parseInt(pickSize);
+    let n = parseInt(splitSize, 10);
+    let m = parseInt(pickSize, 10);
+
+    if (Number.isInteger(n) && Number.isInteger(m)) {
+        if (m > n) {
+            alert("Invalid input! Pick Size must be less or equal to Split Size");
+        } else {
+            alert("Submit secret");
+        }
     } else {
+        console.log(splitSize);
+        console.log(pickSize);
         alert("Invalid input! Split Size and Pick Size must be integers");
     }
 }
