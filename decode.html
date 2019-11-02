@@ -44,11 +44,15 @@
   </div>
 
   <script src="js/jsQR.js"></script>
+  <script src="js/secrets.min.js"></script>
+  <script src="js/main.js"></script>
   <script>
     var video = document.createElement("video");
     var canvasElement = document.getElementById("canvas");
     var canvas = canvasElement.getContext("2d");
     var loadingMessage = document.getElementById("loadingMessage");
+
+    var shares = new Set();
 
     function drawLine(begin, end, color) {
       canvas.beginPath();
@@ -86,7 +90,11 @@
           drawLine(code.location.topRightCorner, code.location.bottomRightCorner, "#FF3B58");
           drawLine(code.location.bottomRightCorner, code.location.bottomLeftCorner, "#FF3B58");
           drawLine(code.location.bottomLeftCorner, code.location.topLeftCorner, "#FF3B58");
-          console.log(code.data);
+          shares.add(code.data);
+          try {
+            let text = combine(Array.from(shares));
+          } catch (err) {
+          }
         }
       }
       requestAnimationFrame(tick);
