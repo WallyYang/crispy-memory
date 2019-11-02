@@ -1,11 +1,25 @@
 // call when the secret is submitted
 function submitSecret() {
     alert("Submit scecret!");
+
+    let splitSize = document.getElementById("split-size").value;
+    let pickSize = document.getElementById("pick-size").value;
+
+    if (Number.isInteger(splitSize) && Number.isInteger) {
+        let n = parseInt(splitSize);
+        let m = parseInt(pickSize);
+    } else {
+        alert("Invalid input! Split Size and Pick Size must be integers");
+    }
 }
 
-//
-function createCanvas(id) {
-    
+// add a child canvas to HTML body with id
+function addCanvas(id) {
+    let canvas = document.createElement("canvas");
+    canvas.setAttribute("id", id);
+
+    let body = document.getElementsByTagName("body")[0];
+    body.appendChild(canvas);
 }
 
 // x: string
