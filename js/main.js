@@ -1,5 +1,10 @@
 // call when the secret is submitted
 function submitSecret() {
+    alert("Submit scecret!");
+}
+
+//
+function createCanvas(id) {
     
 }
 
