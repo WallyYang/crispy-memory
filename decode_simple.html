@@ -1,45 +1,10 @@
-<script type="text/javascript">
-let fileDataURL;
-
-function loadFile(event)
-{
-    if (event.target.files.length > 0)
-    {
-        var file = event.target.files[0];
-        var fileReader = new FileReader();
-        fileReader.onload = function(e) {
-            fileDataURL = e.target.result;
-        };
-        fileDataURL = fileReader.readAsDataURL(file);
-    }
-}
-function decodeTextUpdate(decodedText)
-{
-    var textbox = document.getElementById("decodedText");
-    textbox.innerText = decodedText;
-}
-
-function decode()
-{
-    if (fileDataURL)
-    {
-        qrcode.callback = decodeTextUpdate;
-        qrcode.decode(fileDataURL);
-        fileDataURL = null;
-    }
-    else
-    {
-        document.getElementById("decodedText").innerText = "";
-    }
-}
-</script>
-
 <html>
     <head>
         <meta charset="UTF-8">
         <title>Crispy Memory</title>
         <script src="js/secrets.min.js"></script>
         <script src="js/main.js"></script>
+        <script type="text/javascript" src="js/decode.js"></script>
         <script type="text/javascript" src="js/jsqrcode/grid.js"></script>
         <script type="text/javascript" src="js/jsqrcode/version.js"></script>
         <script type="text/javascript" src="js/jsqrcode/detector.js"></script>
