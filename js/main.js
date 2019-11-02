@@ -48,7 +48,7 @@ function addCanvas(id) {
 // m: at least m shares required to restore x
 // ->: array of hex strings
 function split(x, n, m) {
-    x = "SUPER:" + x
+    x = "SUPER:" + x;
     return secrets.share(secrets.str2hex(x), n, m);
 }
 
