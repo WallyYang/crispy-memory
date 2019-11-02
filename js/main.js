@@ -30,5 +30,5 @@ function genQR(s) {
 function drawQR(qr, canvasId) {
     let canvas = document.getElementById(canvasId);
 
-    qr.drawCanvas(4, 40, canvasId);
+    qr.drawCanvas(4, 40, canvas);
 }
