@@ -96,6 +96,9 @@
           shares.add(code.data);
           try {
             let text = combine(Array.from(shares));
+            canvasElement.hidden = true;
+            loadingMessage.innerText = text;
+            return;
           } catch (err) {
           }
         }

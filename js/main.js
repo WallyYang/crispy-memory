@@ -43,13 +43,18 @@ function addCanvas(id) {
 // m: at least m shares required to restore x
 // ->: array of hex strings
 function split(x, n, m) {
+    x = "SUPER:" + x
     return secrets.share(secrets.str2hex(x), n, m);
 }
 
 // shares: array of hex strings
 // ->: x
 function combine(shares) {
-    return secrets.hex2str(secrets.combine(shares));
+    let text = secrets.hex2str(secrets.combine(shares));
+    if (text.startsWith("SUPER:")) {
+        return text.substr(6);
+    }
+    throw "Invalid shares";
 }
 
 // s: string to generate a QR code
