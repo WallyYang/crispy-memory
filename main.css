@@ -59,7 +59,7 @@ $bg-height: 50px;
 
 /* Main styles */
 body {
-  margin-top: 13.5rem !important;
+  /* margin-top: 13.5rem !important; */
   
   color: #999 !important;
   font: 400 16px/1.5 exo, ubuntu, "segoe ui", helvetica, arial, sans-serif;
