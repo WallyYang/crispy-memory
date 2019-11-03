@@ -13,8 +13,7 @@
 </head>
 
 <body>
-  <br>
-  <ul class="nav justify-content-center">
+  <ul class="nav justify-content-center mt-1">
     <li class="nav-item">
       <a class="nav-link" href="index.html">Home</a>
     </li>
@@ -28,34 +27,33 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 mt-1">
         <h2 class="text-center">Try Crispy Memory</h2>
       </div>
 
       <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-xl-6 offset-xl-3 justify-content-center">
-        <div class="input-group">
+        <div class="input-group mt-2">
           <div class="input-group-prepend">
             <span class="input-group-text">#msg</span>
           </div>
           <textarea id="msg" class="form-control" placeholder="Enter your message" aria-label="user-input"></textarea>
         </div>
 
-        <div class="input-group">
+        <div class="input-group mt-2">
           <div class="input-group-prepend">
             <div class="input-group-text" id="user_input_message">#</div>
           </div>
           <input id="split-size" type="number" class="form-control" placeholder="Split size" aria-label="user-split-size" aria-describedby="split_size">
         </div>
-        <div class="input-group">
+        <div class="input-group mt-2">
           <div class="input-group-prepend">
             <div class="input-group-text" id="user_input_message">#</div>
           </div>
           <input id="pick-size" type="number" class="form-control" placeholder="Pick size" aria-label="user-pick-size" aria-describedby="pick_size">
         </div>
 
-        <br>
 
-        <div class="row">
+        <div class="row mt-3">
           <div class="col-sm-12">
             <div class="text-center">
               <button onclick="submitSecret()" type="button" class="btn btn-primary btn-block">Encode!</button>
